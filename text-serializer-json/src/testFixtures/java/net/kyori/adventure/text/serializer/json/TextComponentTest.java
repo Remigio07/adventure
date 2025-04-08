@@ -99,9 +99,9 @@ final class TextComponentTest extends SerializerTest {
       json -> {
         json.addProperty(JSONComponentConstants.TEXT, "This is a test.");
         json.addProperty(JSONComponentConstants.COLOR, name(NamedTextColor.DARK_PURPLE));
-        json.add(JSONComponentConstants.HOVER_EVENT, object(event -> {
+        json.add(JSONComponentConstants.HOVER_EVENT_SNAKE, object(event -> {
           event.addProperty(JSONComponentConstants.HOVER_EVENT_ACTION, name(HoverEvent.Action.SHOW_TEXT));
-          event.addProperty(JSONComponentConstants.HOVER_EVENT_CONTENTS, "A test.");
+          event.addProperty(JSONComponentConstants.HOVER_EVENT_VALUE, "A test.");
         }));
         json.add(JSONComponentConstants.EXTRA, array(extra -> {
           extra.add(" ");

@@ -76,7 +76,7 @@ final class JSONComponentSerializerTest extends SerializerTest {
       expected,
       deserialize(serializer, object(object -> {
         object.addProperty(JSONComponentConstants.TEXT, "hello");
-        object.add(JSONComponentConstants.HOVER_EVENT, object(hover -> {
+        object.add(JSONComponentConstants.HOVER_EVENT_CAMEL, object(hover -> {
           hover.addProperty(JSONComponentConstants.HOVER_EVENT_ACTION, "show_text");
           hover.add(JSONComponentConstants.HOVER_EVENT_VALUE, new JsonArray());
         }));
@@ -90,7 +90,7 @@ final class JSONComponentSerializerTest extends SerializerTest {
     assertThrows(JsonParseException.class, () -> {
       deserialize(object(object -> {
         object.addProperty(JSONComponentConstants.TEXT, "hello");
-        object.add(JSONComponentConstants.HOVER_EVENT, object(hover -> {
+        object.add(JSONComponentConstants.HOVER_EVENT_CAMEL, object(hover -> {
           hover.addProperty(JSONComponentConstants.HOVER_EVENT_ACTION, "show_text");
           hover.add(JSONComponentConstants.HOVER_EVENT_VALUE, new JsonArray());
         }));

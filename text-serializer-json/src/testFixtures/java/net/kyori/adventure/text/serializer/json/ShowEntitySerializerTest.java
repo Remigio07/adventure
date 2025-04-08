@@ -38,12 +38,10 @@ final class ShowEntitySerializerTest extends SerializerTest {
       .build();
 
     this.testStyle(cereal, Style.style().hoverEvent(HoverEvent.showEntity(Key.key("zombie"), id)).build(), json -> {
-      json.add(JSONComponentConstants.HOVER_EVENT, object(hover -> {
+      json.add(JSONComponentConstants.HOVER_EVENT_SNAKE, object(hover -> {
         hover.addProperty(JSONComponentConstants.HOVER_EVENT_ACTION, "show_entity");
-        hover.add(JSONComponentConstants.HOVER_EVENT_CONTENTS, object(contents -> {
-          contents.addProperty(JSONComponentConstants.SHOW_ENTITY_TYPE, "minecraft:zombie");
-          contents.addProperty(JSONComponentConstants.SHOW_ENTITY_ID, id.toString());
-        }));
+        hover.addProperty(JSONComponentConstants.SHOW_ENTITY_TYPE, "minecraft:zombie");
+        hover.addProperty(JSONComponentConstants.SHOW_ENTITY_ID, id.toString());
       }));
     });
   }
@@ -54,16 +52,14 @@ final class ShowEntitySerializerTest extends SerializerTest {
     this.testStyle(
       Style.style().hoverEvent(HoverEvent.showEntity(Key.key("zombie"), id)).build(),
       comp -> {
-        comp.add(JSONComponentConstants.HOVER_EVENT, object(hover -> {
+        comp.add(JSONComponentConstants.HOVER_EVENT_SNAKE, object(hover -> {
           hover.addProperty(JSONComponentConstants.HOVER_EVENT_ACTION, "show_entity");
-          hover.add(JSONComponentConstants.HOVER_EVENT_CONTENTS, object(contents -> {
-            contents.addProperty(JSONComponentConstants.SHOW_ENTITY_TYPE, "minecraft:zombie");
-            contents.add(JSONComponentConstants.SHOW_ENTITY_ID, array(idArray -> {
-              idArray.add((int) (id.getMostSignificantBits() >> 32));
-              idArray.add((int) (id.getMostSignificantBits() & 0xffffffffl));
-              idArray.add((int) (id.getLeastSignificantBits() >> 32));
-              idArray.add((int) (id.getLeastSignificantBits() & 0xffffffffl));
-            }));
+          hover.addProperty(JSONComponentConstants.SHOW_ENTITY_TYPE, "minecraft:zombie");
+          hover.add(JSONComponentConstants.SHOW_ENTITY_ID, array(idArray -> {
+            idArray.add((int) (id.getMostSignificantBits() >> 32));
+            idArray.add((int) (id.getMostSignificantBits() & 0xffffffffl));
+            idArray.add((int) (id.getLeastSignificantBits() >> 32));
+            idArray.add((int) (id.getLeastSignificantBits() & 0xffffffffl));
           }));
         }));
       }

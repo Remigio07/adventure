@@ -142,9 +142,9 @@ class StyleTest extends SerializerTest {
         json.addProperty(JSONComponentConstants.FONT, "kyori:kittens");
         json.addProperty(JSONComponentConstants.COLOR, name(NamedTextColor.RED));
         json.addProperty(name(TextDecoration.BOLD), true);
-        json.add(JSONComponentConstants.CLICK_EVENT, object(clickEvent -> {
+        json.add(JSONComponentConstants.CLICK_EVENT_SNAKE, object(clickEvent -> {
           clickEvent.addProperty(JSONComponentConstants.CLICK_EVENT_ACTION, name(ClickEvent.Action.OPEN_URL));
-          clickEvent.addProperty(JSONComponentConstants.CLICK_EVENT_VALUE, "https://github.com");
+          clickEvent.addProperty(JSONComponentConstants.CLICK_EVENT_URL, "https://github.com");
         }));
       }
     );
@@ -162,20 +162,18 @@ class StyleTest extends SerializerTest {
         )))
         .build(),
       json -> {
-        json.add(JSONComponentConstants.HOVER_EVENT, object(hoverEvent -> {
+        json.add(JSONComponentConstants.HOVER_EVENT_SNAKE, object(hoverEvent -> {
           hoverEvent.addProperty(JSONComponentConstants.HOVER_EVENT_ACTION, name(HoverEvent.Action.SHOW_ENTITY));
-          hoverEvent.add(JSONComponentConstants.HOVER_EVENT_CONTENTS, object(contents -> {
-            contents.addProperty(JSONComponentConstants.SHOW_ENTITY_TYPE, "minecraft:pig");
-            contents.add(JSONComponentConstants.SHOW_ENTITY_ID, array(arr -> {
-              arr.add(dolores.getMostSignificantBits() >> 32);
-              arr.add((int) (dolores.getMostSignificantBits() & 0xffffffffl));
-              arr.add(dolores.getLeastSignificantBits() >> 32);
-              arr.add((int) (dolores.getLeastSignificantBits() & 0xffffffffl));
-            }));
-            contents.add(JSONComponentConstants.SHOW_ENTITY_NAME, object(name -> {
-              name.addProperty(JSONComponentConstants.TEXT, "Dolores");
-              name.addProperty(JSONComponentConstants.COLOR, "#0A1AB9");
-            }));
+          hoverEvent.addProperty(JSONComponentConstants.SHOW_ENTITY_TYPE, "minecraft:pig");
+          hoverEvent.add(JSONComponentConstants.SHOW_ENTITY_ID, array(arr -> {
+            arr.add(dolores.getMostSignificantBits() >> 32);
+            arr.add((int) (dolores.getMostSignificantBits() & 0xffffffffl));
+            arr.add(dolores.getLeastSignificantBits() >> 32);
+            arr.add((int) (dolores.getLeastSignificantBits() & 0xffffffffl));
+          }));
+          hoverEvent.add(JSONComponentConstants.SHOW_ENTITY_NAME, object(name -> {
+            name.addProperty(JSONComponentConstants.TEXT, "Dolores");
+            name.addProperty(JSONComponentConstants.COLOR, "#0A1AB9");
           }));
         }));
       }

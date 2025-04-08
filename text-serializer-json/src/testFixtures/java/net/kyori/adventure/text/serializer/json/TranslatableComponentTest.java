@@ -86,23 +86,21 @@ final class TranslatableComponentTest extends SerializerTest {
         json.addProperty(JSONComponentConstants.COLOR, name(NamedTextColor.YELLOW));
         json.add(JSONComponentConstants.TRANSLATE_WITH, array(with -> with.add(object(item -> {
           item.addProperty(JSONComponentConstants.TEXT, name);
-          item.add(JSONComponentConstants.CLICK_EVENT, object(event -> {
+          item.add(JSONComponentConstants.CLICK_EVENT_SNAKE, object(event -> {
             event.addProperty(JSONComponentConstants.CLICK_EVENT_ACTION, name(ClickEvent.Action.SUGGEST_COMMAND));
-            event.addProperty(JSONComponentConstants.CLICK_EVENT_VALUE, command);
+            event.addProperty(JSONComponentConstants.CLICK_EVENT_COMMAND, command);
           }));
-          item.add(JSONComponentConstants.HOVER_EVENT, object(event -> {
+          item.add(JSONComponentConstants.HOVER_EVENT_SNAKE, object(event -> {
             event.addProperty(JSONComponentConstants.HOVER_EVENT_ACTION, name(HoverEvent.Action.SHOW_ENTITY));
-            event.add(JSONComponentConstants.HOVER_EVENT_CONTENTS, object(value -> {
-              value.addProperty(JSONComponentConstants.SHOW_ENTITY_TYPE, "minecraft:player");
-              value.add(JSONComponentConstants.SHOW_ENTITY_ID, array(arr -> {
-                arr.add(-351136121);
-                arr.add(-1961211580);
-                arr.add(-1118969688);
-                arr.add(416931810);
-              }));
-              value.add(JSONComponentConstants.SHOW_ENTITY_NAME, object(namej -> {
-                namej.addProperty(JSONComponentConstants.TEXT, name);
-              }));
+            event.addProperty(JSONComponentConstants.SHOW_ENTITY_TYPE, "minecraft:player");
+            event.add(JSONComponentConstants.SHOW_ENTITY_ID, array(arr -> {
+              arr.add(-351136121);
+              arr.add(-1961211580);
+              arr.add(-1118969688);
+              arr.add(416931810);
+            }));
+            event.add(JSONComponentConstants.SHOW_ENTITY_NAME, object(namej -> {
+              namej.addProperty(JSONComponentConstants.TEXT, name);
             }));
           }));
         }))));
